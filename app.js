@@ -14,6 +14,7 @@ const TYPER = function () {
   this.word = null
   this.wordMinLength = 5
   this.guessedWords = 0
+  
 
   this.init()
 }
@@ -22,6 +23,7 @@ window.TYPER = TYPER
 
 TYPER.prototype = {
   init: function () {
+    
     this.canvas = document.getElementsByTagName('canvas')[0]
     this.ctx = this.canvas.getContext('2d')
 
@@ -75,14 +77,15 @@ TYPER.prototype = {
 
       if (this.word.left.length === 0) {
         this.guessedWords += 1
-
+        document.getElementById("myText").innerHTML = this.guessedWords;
         this.generateWord()
       }
 
       this.word.Draw()
     }
+    }
   }
-}
+
 
 /* WORD */
 const Word = function (word, canvas, ctx) {
@@ -95,7 +98,6 @@ const Word = function (word, canvas, ctx) {
 Word.prototype = {
   Draw: function () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
     this.ctx.textAlign = 'center'
     this.ctx.font = '140px Courier'
     this.ctx.fillText(this.left, this.canvas.width / 2, this.canvas.height / 2)
